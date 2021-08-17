@@ -4,6 +4,7 @@ import 'package:mio_movie/MovieDetailsWidget.dart';
 import 'package:mio_movie/HorizontalMovieCard.dart';
 import 'package:mio_movie/VerticalMovieCard.dart';
 import 'package:mio_movie/MovieForm.dart';
+import 'package:mio_movie/DatabaseHelper.dart';
 
 void main() {
   runApp(MyApp());
@@ -16,15 +17,16 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   final List<MovieModel> watchedMovieList = [
-    MovieModel(id: "101", name: "The Philadelpha Experiment", genre: ["Suspense"], duration: "03h 15m", image: "images/image_1.png", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
-    MovieModel(id: "102", name: "Interstellar (2014)", genre: ["Sci-Fi", "Adventure"], duration: "02h 30m", image: "images/image_2.png", description: ""),
-    MovieModel(id: "103", name: "Arrival", genre: ["Adventure"], duration: "02h 30m", image: "images/image_3.png", description: ""),
+    MovieModel(id: "101", name: "The Philadelpha Experiment", genre: "Suspense", duration: "03h 15m", image: "images/image_1.png", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+    MovieModel(id: "102", name: "Interstellar (2014)", genre: "Sci-Fi", duration: "02h 30m", image: "images/image_2.png", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+    MovieModel(id: "103", name: "Arrival", genre: "Adventure", duration: "02h 30m", image: "images/image_3.png", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
   ];
 
+  // List<MovieModel> trendingMovieList = [];
   final List<MovieModel> trendingMovieList = [
-    MovieModel(id: "101", name: "The Philadelpha Experiment", genre: ["Suspense"], duration: "03h 15m", image: "images/image_1.png", description: ""),
-    MovieModel(id: "102", name: "Interstellar (2014)", genre: ["Sci-Fi", "Adventure"], duration: "02h 30m", image: "images/image_2.png", description: ""),
-    MovieModel(id: "103", name: "Arrival", genre: ["Adventure"], duration: "02h 30m", image: "images/image_3.png", description: ""),
+    MovieModel(id: "101", name: "The Philadelpha Experiment", genre: "Suspense", duration: "03h 15m", image: "images/image_1.png", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+    MovieModel(id: "102", name: "Interstellar (2014)", genre: "Sci-Fi", duration: "02h 30m", image: "images/image_2.png", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
+    MovieModel(id: "103", name: "Arrival", genre: "Adventure", duration: "02h 30m", image: "images/image_3.png", description: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum."),
   ];
 
   void deleteFromList(MovieModel movie) {
@@ -40,6 +42,24 @@ class _MyAppState extends State<MyApp> {
     return TextStyle(color: Colors.cyan, fontSize: 18, fontWeight: FontWeight.w700, letterSpacing: 1);
   }
 
+  void query() async {
+    List<Map<String,dynamic>> queryRows = await DatabaseHelper.instance.queryAll();
+    for(int x=0; x<queryRows.length; x++) {
+      MovieModel movie = MovieModel(id: queryRows[x][DatabaseHelper.columnId].toString(), name: queryRows[x][DatabaseHelper.name],
+          duration: queryRows[x][DatabaseHelper.duration], genre: queryRows[x][DatabaseHelper.genre],
+          image: queryRows[x][DatabaseHelper.image], description: queryRows[x][DatabaseHelper.description]);
+
+      trendingMovieList.add(movie);
+    }
+    print(queryRows);
+  }
+
+  @override
+  void initState() {
+    super.initState();
+    // query();
+
+  }
 
   @override
   Widget build(BuildContext context) {

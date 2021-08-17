@@ -7,8 +7,8 @@ class MovieDetailsWidget extends StatelessWidget {
     final Map<String, Object> routeArgs = ModalRoute.of(context)!.settings.arguments as Map<String, Object>;
     final String movieId = routeArgs["id"]!.toString();
     final String movieName = routeArgs["name"]!.toString();
-    final String genre = routeArgs["genre"]!.toString();
-    final String movieGenre = genre.substring(1, genre.length-1);
+    final String movieGenre = routeArgs["genre"]!.toString();
+    // final String movieGenre = genre.substring(1, genre.length-1);
     final String movieDuration = routeArgs["duration"]!.toString();
     final String movieImage = routeArgs["image"]!.toString();
     final String movieDescription = routeArgs["description"]!.toString();

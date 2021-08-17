@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mio_movie/MovieModel.dart';
-import 'package:mio_movie/main.dart';
 
 class VerticalMovieCard extends StatelessWidget {
   final Object appState;
@@ -47,13 +46,9 @@ class VerticalMovieCard extends StatelessWidget {
                   SizedBox(height: 20),
                   Text(movie.name, style: TextStyle(color: Colors.cyan, fontSize: 18, fontWeight: FontWeight.w600)),
                   SizedBox(height: 4),
-                  Row(
-                      children: movie.genre.map((genre) {
-                        return Padding(
-                            padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
-                            child: Text(genre, style: TextStyle(color: Colors.pinkAccent, fontSize: 16))
-                        );
-                      }).toList()
+                  Padding(
+                      padding: const EdgeInsets.fromLTRB(0, 0, 8, 0),
+                      child: Text(movie.genre, style: TextStyle(color: Colors.pinkAccent, fontSize: 16))
                   ),
                   SizedBox(height: 4),
                   Text(movie.duration, style: TextStyle(color: Colors.pinkAccent, fontSize: 14, fontWeight: FontWeight.w300))

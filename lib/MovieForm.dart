@@ -13,10 +13,10 @@ class MovieForm extends StatefulWidget {
 class _MovieFormState extends State<MovieForm> {
   final String title = "Edit Movie Details";
   final ImagePicker picker = ImagePicker();
-  File? imageFile = null;
+  File? imageFile;
 
   Future uploadImage() async {
-    imageFile = File(await ImagePicker().pickImage(source: ImageSource.gallery).then((pickedFile) => pickedFile.path));
+    imageFile = File(await ImagePicker().pickImage(source: ImageSource.gallery).then((pickedFile) => pickedFile!.path));
 
     // final image = await picker.pickImage(source: ImageSource.gallery);
     // if(image != null)

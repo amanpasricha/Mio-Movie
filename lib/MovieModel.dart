@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class MovieModel {
   final String id;
   final String name;
-  final List<String> genre;
+  final String genre;
   final String duration;
   final String image;
   final String description;
@@ -22,24 +22,6 @@ class MovieModel {
       return true;
     return false;
   }
-
-  MovieModel copy({
-    String? id,
-    String? name,
-    String? duration,
-    List<String>? genre,
-    String? image,
-    String? description
-  }) =>
-      MovieModel(
-        id: id ?? this.id,
-        name: name ?? this.name,
-        duration: duration ?? this.duration,
-        genre: genre ?? this.genre,
-        image: image ?? this.image,
-        description: description ?? this.description
-      );
-
 
   Map<String, Object> toJson() => {
     MovieFields.id: id,
