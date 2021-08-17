@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 
-class MovieWidget extends StatelessWidget {
+class MovieDetailsWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
     final Map<String, Object> routeArgs = ModalRoute.of(context)!.settings.arguments as Map<String, Object>;
-    final String id = routeArgs["id"]!.toString();
+    final String movieId = routeArgs["id"]!.toString();
     final String movieName = routeArgs["name"]!.toString();
     final String genre = routeArgs["genre"]!.toString();
     final String movieGenre = genre.substring(1, genre.length-1);
@@ -56,7 +56,7 @@ class MovieWidget extends StatelessWidget {
                       children: [
                         Text(
                           movieGenre,
-                          style: TextStyle(fontSize: 24, color: Colors.pinkAccent, fontWeight: FontWeight.bold)
+                          style: TextStyle(fontSize: 20, color: Colors.pinkAccent)
                         ),
                         Text(
                           movieDuration,
@@ -74,10 +74,19 @@ class MovieWidget extends StatelessWidget {
         )
       ),
       floatingActionButton: FloatingActionButton.extended(
-          onPressed: () {},
-          icon: Icon(Icons.edit),
+          onPressed: () {
+            Navigator.pushNamed(context, "/movie-form", arguments: {
+              "id": movieId,
+              "name": movieName,
+              "genre": movieGenre,
+              "duration": movieDuration,
+              "image": movieImage,
+              "description": movieDescription
+            });
+          },
+          icon: Icon(Icons.edit, color: Colors.white,),
           backgroundColor: Colors.pinkAccent,
-          label: Text("Edit Movie", style: TextStyle(fontWeight: FontWeight.bold),)
+          label: Text("Edit Movie", style: TextStyle(fontWeight: FontWeight.bold, color: Colors.white))
       )
     );
   }

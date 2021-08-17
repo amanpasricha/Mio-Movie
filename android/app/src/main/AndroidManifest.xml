@@ -1,6 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.miomovie.mio_movie">
    <application
+        android:requestLegacyExternalStorage="true"
         android:label="mio_movie"
         android:icon="@mipmap/ic_launcher">
         <activity
